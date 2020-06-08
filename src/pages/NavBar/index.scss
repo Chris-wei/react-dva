@@ -1,0 +1,39 @@
+.header{
+  white-space: nowrap;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .logo{
+    width: 16px;
+    height: 16px;
+    margin: auto 10px;
+  }
+  .menu-left{
+    vertical-align: top;
+    background-color: #fff;
+    position: relative;
+    height: 48px;
+    width: calc(100% - 45px);
+    line-height: 48px;
+    .menu-item{
+      height: 48px;
+    }
+    .login{
+      position: absolute;
+      right: 70px;
+    }
+    .register{
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+.dropdown{
+  height: 48px;
+  line-height: 48px;
+  position: absolute;
+  right: 30px;
+}

@@ -1,0 +1,33 @@
+
+.login-box{
+  padding: 20px;
+}
+
+.logo{
+  width: 128px;
+  height: 128px;
+  margin: 0 auto;
+}
+
+.account-form{
+  display: block;
+  width: 400px;
+  margin: 20px auto;
+  .btn{
+    display: block;
+    width: 120px;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+:global{
+  .ant-form-item{
+    display: block;
+    margin-bottom: 10px;
+  }
+  .ant-form-item-label{
+    display: block;
+    text-align: left;
+  }
+}
