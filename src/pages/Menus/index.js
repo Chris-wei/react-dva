@@ -1,58 +1,31 @@
-import React, {useMemo, useState} from 'react'
-import {Button, Col, Row, Table,message} from "antd";
+import React, {useMemo, useState,useEffect} from 'react'
+import {Button, Col, message, Row, Table} from "antd";
 import styles from './index.scss'
-
-const data = [{
-	name: '榴莲pizza',
-	description: '最火爆的pizza',
-	options: [{
-		id: 1,
-		size: 9,
-		price: 58
-	}, {
-		id: 2,
-		size: 12,
-		price: 78
-	}]
-}, {
-	name: '水果pizza',
-	description: '素食主义',
-	options: [{
-		id: 3,
-		size: 9,
-		price: 48
-	}, {
-		id: 4,
-		size: 12,
-		price: 68
-	}]
-}, {
-	name: '纯肉pizza',
-	description: '无肉不欢',
-	options: [{
-		id: 5,
-		size: 9,
-		price: 88
-	}, {
-		id: 6,
-		size: 12,
-		price: 108
-	}]
-}]
+import Request from '../../utils/Request'
 
 function Index () {
 	const [cart, setCart] = useState([])
-	const [total, setTotal] = useState(0)
-	let dataSource = []
-	data.forEach((item, idx) => {
-		dataSource.push({
-			size: `${item.name}`,
-			key: item.name
+	const [dataSource, setDataSource] = useState([])
+
+	useEffect(()=>{
+		Request('/mock/menu.json').then(res=>{
+			if(res.err_code === 0){
+				const {data} = res;
+				let dataSource = [];
+				data.forEach((item, idx) => {
+					dataSource.push({
+						size: `${item.name}`,
+						key: item.name
+					})
+					item.options.forEach((ele, index) => {
+						dataSource.push({ ...ele, name: item.name, key: idx + '-' + index })
+					})
+				})
+				setDataSource(dataSource)
+			}
 		})
-		item.options.forEach((ele, index) => {
-			dataSource.push({ ...ele, name: item.name, key: idx + '-' + index })
-		})
-	})
+	},[])
+
 
 	const totalPrice = useMemo(() => {
 		return cart.reduce((prev, curr) => (
@@ -121,12 +94,17 @@ function Index () {
 			align: 'center',
 			dataIndex: 'name',
 		}, {
+			key: 'size',
+			title: '尺寸',
+			align: 'center',
+			dataIndex: 'size',
+		},{
 			key: 'price',
 			title: '价格',
 			align: 'center',
 			dataIndex: 'price',
 		}]
-		return <Table columns={columns} size={'small'} locale={{ emptyText: '购物车暂无任何东西' }}
+		return <Table columns={columns} size={'small'} locale={{ emptyText: '购物车暂无任何商品' }}
 					  dataSource={cart} pagination={false}/>
 	}
 
@@ -166,12 +144,13 @@ function Index () {
 			<Col sm={20} md={12}>
 				{renderMenuTable()}
 			</Col>
-			<Col sm={24} md={8}>
+			<Col sm={24} md={9}>
 				{renderCartTable()}
 				<div className={styles.bot}>
 					<p className={styles['total-price']}>总价：{totalPrice}</p>
 					<Button type={"primary"} size={"small"}
 							className={styles['submit-btn']}
+							disabled={!(cart.length > 0)}
 							onClick={handleSubmitBtnClick}>提交</Button>
 				</div>
 			</Col>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input,message} from 'antd';
 import styles from './index.scss'
 import Logo from '../../../assets/logo.png'
 import Loading from '../../../components/Loading'
@@ -9,12 +9,13 @@ function Index (props) {
 	const [loading, setLoading] = useState(false)
 
 	const onFinish = values => {
-		const { usename, password } = values;
+		// const { usename, password } = values;
 
 		setLoading(true)
 
 		setTimeout(() => {
 			setLoading(false)
+			message.success('注册成功')
 			props.history.push('/login')
 		}, 1000)
 

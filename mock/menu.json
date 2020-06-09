@@ -1,0 +1,57 @@
+{
+  "err_code": 0,
+  "msg": "success",
+  "data": [
+    {
+      "key" : 1 ,
+      "name": "榴莲pizza",
+      "description": "最火爆的pizza",
+      "options": [
+        {
+          "id": 1,
+          "size": 9,
+          "price": 58
+        },
+        {
+          "id": 2,
+          "size": 12,
+          "price": 78
+        }
+      ]
+    },
+    {
+      "key" : 2 ,
+      "name": "水果pizza",
+      "description": "素食主义",
+      "options": [
+        {
+          "id": 3,
+          "size": 9,
+          "price": 48
+        },
+        {
+          "id": 4,
+          "size": 12,
+          "price": 68
+        }
+      ]
+    },
+    {
+      "key" : 3 ,
+      "name": "纯肉pizza",
+      "description": "无肉不欢",
+      "options": [
+        {
+          "id": 5,
+          "size": 9,
+          "price": 88
+        },
+        {
+          "id": 6,
+          "size": 12,
+          "price": 108
+        }
+      ]
+    }
+  ]
+}
