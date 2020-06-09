@@ -2,11 +2,6 @@ import dva from 'dva';
 import {createHashHistory} from 'history';
 import './stylesheets/index.scss';
 import './stylesheets/reset.scss';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-import 'antd/dist/antd.css';
-
-moment.locale('zh-cn');
 
 // 1. Initialize
 const app = dva({
